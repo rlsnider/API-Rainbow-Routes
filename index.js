@@ -19,11 +19,55 @@ app.get('/', function (req, res) {
 app.get('/:color', function (req, res) {
     let myColor = req.params.color
     res.send(`
+    <style>
+    .heart {
+        position: absolute;margin: auto;
+        top 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background-color: ${myColor};
+        height: 400px;
+        width: 400px;
+        transform: rotate(-45deg);
+        opacity: 10%;
+    }
+    .heart::after{
+        background-color: ${myColor};
+        content: "";
+        border-radius: 50%;
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        top: 0px;
+        left: 200px;
+    }
+    .heart::before {
+        content:" ";
+        background: ${myColor};
+        border-radius: 50%;
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        top: -200px;
+        left:0px;
+    }
+    .mySentence {
+        color: ${myColor};
+        text-align: center;
+        opacity: 100%; 
+    }
+    </style>
     <body style="margin: 0;">
         <div style="border: 1px solid black; height: 10vh; background-color: ${myColor};">
-            <h2 style="text-align: center;">NAV BAR</h2>
+            <h2 style="text-align: center;">FROM THE DESK OF:</h2>
         </div>
-        <h1 style="color: ${myColor};">${myColor.charAt(0).toUpperCase() + myColor.slice(1)} Page</h1>
+        <h1 class ="mySentence">${myColor.charAt(0).toUpperCase() + myColor.slice(1)} Page</h1>
+        
+        <div class ="heart">
+            
+           
+        </div>
     </body>
 `)
 })
